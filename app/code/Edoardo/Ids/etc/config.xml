@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <edoardo_ids>
+            <general>
+                <enabled>0</enabled>
+                <min_score_log>20</min_score_log>
+                <min_score_stop>40</min_score_stop>
+            </general>
+        </edoardo_ids>
+    </default>
+</config>

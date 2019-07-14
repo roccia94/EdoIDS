@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+
+    <type name="Magento\Framework\AppInterface">
+        <plugin sortOrder="1" name="edoardo_ids_apply_filter" type="Edoardo\Ids\Plugin\ApplyFilter"/>
+    </type>
+
+    <preference for="Edoardo\Ids\Model\DetectorInterface" type="Edoardo\Ids\Model\DetectorChain" />
+
+    <type name="Edoardo\Ids\Model\DetectorChain">
+        <arguments>
+            <argument name="detectors" xsi:type="array">
+                <item name="appsec-1951" xsi:type="object">Edoardo\Ids\Model\Detector\Appsec1951</item>
+                <item name="supee-5344" xsi:type="object">Edoardo\Ids\Model\Detector\Supee5344</item>
+                <item name="prodsecbug-2198" xsi:type="object">Edoardo\Ids\Model\Detector\Prodsecbug2198</item>
+                <item name="html-tags" xsi:type="object">Edoardo\Ids\Model\Detector\HtmlTags</item>
+                <item name="html-comments" xsi:type="object">Edoardo\Ids\Model\Detector\HtmlComments</item>
+                <item name="html-attributes" xsi:type="object">Edoardo\Ids\Model\Detector\HtmlAttributes</item>
+                <item name="javascript" xsi:type="object">Edoardo\Ids\Model\Detector\Javascript</item>
+                <item name="js-fuck" xsi:type="object">Edoardo\Ids\Model\Detector\JsFuck</item>
+                <item name="sqli" xsi:type="object">Edoardo\Ids\Model\Detector\Sqli</item>
+                <item name="php-commands" xsi:type="object">Edoardo\Ids\Model\Detector\PhpCommands</item>
+                <item name="filesystem" xsi:type="object">Edoardo\Ids\Model\Detector\PhpCommands</item>
+                <item name="php-ids" xsi:type="object">Edoardo\Ids\Model\Detector\Phpids</item>
+            </argument>
+        </arguments>
+    </type>
+</config>

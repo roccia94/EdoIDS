@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="edoardo" translate="label" sortOrder="200">
+            <label>Edoardo</label>
+        </tab>
+
+        <section id="edoardo_ids" translate="label" type="text" sortOrder="70" showInDefault="1"
+                 showInWebsite="1" showInStore="1">
+            <class>separator-top</class>
+            <label>IDS</label>
+            <tab>edoardo</tab>
+            <resource>Edoardo_Ids::config</resource>
+
+            <group id="general" translate="label" type="text" sortOrder="600" showInDefault="1" showInWebsite="1"
+                   showInStore="1">
+                <label>General</label>
+                <field id="enabled" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="0"
+                       showInStore="0">
+                    <label>Enable</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field canRestore="1" id="min_score_log" translate="label" type="text" sortOrder="20" showInDefault="1"
+                       showInWebsite="0" showInStore="0">
+                    <label>Minimum impact score to log event</label>
+                    <comment>0 to disable</comment>
+                </field>
+                <field canRestore="1" id="min_score_stop" translate="label" type="text" sortOrder="30"
+                       showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Minimum impact score to stop request</label>
+                    <comment>0 to disable</comment>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

@@ -9,9 +9,9 @@ use Edoardo\Ids\Model\SecurityThreat;
 use Edoardo\Ids\Model\SecurityThreatFactory;
 use Edoardo\Ids\Model\Tags;
 
-class Javascript implements DetectorInterface
+class RFIredirect implements DetectorInterface
 {
-    private const MULTIPLIER = 20;
+    private const MULTIPLIER = 40;
 
     /**
      * @var SecurityThreatFactory
@@ -24,31 +24,15 @@ class Javascript implements DetectorInterface
     private $getMatchesCount;
 
     /**
-     * @param SecurityThreatFactory $securityThreatFactory
      * @param GetMatchesCount $getMatchesCount
+     * @param SecurityThreatFactory $securityThreatFactory
      */
     public function __construct(
-        SecurityThreatFactory $securityThreatFactory,
-        GetMatchesCount $getMatchesCount
+        GetMatchesCount $getMatchesCount,
+        SecurityThreatFactory $securityThreatFactory
     ) {
         $this->securityThreatFactory = $securityThreatFactory;
         $this->getMatchesCount = $getMatchesCount;
-    }
-
-    /**
-     * @return array
-     */
-    private function getSearchPatterns(): array
-    {
-        return [
-            '/(this|window|top|parent|frames|self|content)\\s*\\.\\s*(location|document)/',
-            '/alert\\s*\\(/',
-            '/jquery\\s*\\./',
-            '/location\\s*\\./',
-            '/document\\s*\\./',
-            '/getelementby(?:names|id|classname|tag|tagname)\\s*\\(/',
-            '/javascript\s*:/',
-        ];
     }
 
     /**
@@ -60,18 +44,13 @@ class Javascript implements DetectorInterface
 
         foreach ($requestPayload as $type => $data) {
             foreach ($data as $field => $value) {
-                $score += $this->getMatchesCount->execute($value, $this->getSearchPatterns());
+                $score += $this->getMatchesCount->execute($value, ['/\\w+:\/\//']);
             }
         }
 
         return $this->securityThreatFactory->create([
             'impact' => $score * self::MULTIPLIER,
-            'tags' => $score > 0 ? [Tags::XSS] : []
+            'tags' => $score > 0 ? [Tags::XSS, Tags::RCE] : []
         ]);
     }
 }
-
-
-
-
-

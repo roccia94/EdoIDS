@@ -17,7 +17,7 @@ class GetMatchesCount
         $count = 0;
 
         foreach ($searches as $search) {
-            $isRegex = strpos($search, '/') !== false;
+            $isRegex = strpos($search, '/') === 0;
             if ($isRegex) {
                 if (preg_match_all($search, $value, $matches)) {
                     $count += count($matches);

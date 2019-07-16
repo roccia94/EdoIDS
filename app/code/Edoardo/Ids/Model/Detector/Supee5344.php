@@ -11,7 +11,7 @@ use Edoardo\Ids\Model\Tags;
 
 class Supee5344 implements DetectorInterface
 {
-    private const MULTIPLIER = 1000;
+    private const MULTIPLIER = 100;
 
     /**
      * @var SecurityThreatFactory
@@ -58,3 +58,4 @@ class Supee5344 implements DetectorInterface
         ]);
     }
 }
+

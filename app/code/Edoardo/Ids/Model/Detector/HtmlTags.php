@@ -10,7 +10,7 @@ use Edoardo\Ids\Model\Tags;
 
 class HtmlTags implements DetectorInterface
 {
-    private const MULTIPLIER = 5;
+    private const MULTIPLIER = 10;
 
     /**
      * @var SecurityThreatFactory

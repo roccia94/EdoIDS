@@ -11,8 +11,8 @@ use Edoardo\Ids\Model\Tags;
 
 class Filesystem implements DetectorInterface
 {
-    private const SUSPICIOUS_MULTIPLIER = 5;
-    private const CRITICAL_MULTIPLIER = 20;
+    private const SUSPICIOUS_MULTIPLIER = 10;
+    private const CRITICAL_MULTIPLIER = 40;
 
     /**
      * @var SecurityThreatFactory

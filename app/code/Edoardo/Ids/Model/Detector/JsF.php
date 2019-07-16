@@ -9,7 +9,7 @@ use Edoardo\Ids\Model\SecurityThreat;
 use Edoardo\Ids\Model\SecurityThreatFactory;
 use Edoardo\Ids\Model\Tags;
 
-class Javascript implements DetectorInterface
+class JsF implements DetectorInterface
 {
     private const MULTIPLIER = 20;
 
@@ -40,14 +40,15 @@ class Javascript implements DetectorInterface
      */
     private function getSearchPatterns(): array
     {
+        // http://www.jsfuck.com/
+        // https://github.com/aemkei/jsfuck/blob/master/jsfuck.js
         return [
-            '/(this|window|top|parent|frames|self|content)\\s*\\.\\s*(location|document)/',
-            '/alert\\s*\\(/',
-            '/jquery\\s*\\./',
-            '/location\\s*\\./',
-            '/document\\s*\\./',
-            '/getelementby(?:names|id|classname|tag|tagname)\\s*\\(/',
-            '/javascript\s*:/',
+            '![]',
+            '[][[]]',
+            '+[![]]',
+            '+[]',
+            '+!+[]',
+            '!+[]',
         ];
     }
 
@@ -60,18 +61,15 @@ class Javascript implements DetectorInterface
 
         foreach ($requestPayload as $type => $data) {
             foreach ($data as $field => $value) {
+                $value = preg_replace('/\s+/', '', $value);
+
                 $score += $this->getMatchesCount->execute($value, $this->getSearchPatterns());
             }
         }
 
         return $this->securityThreatFactory->create([
             'impact' => $score * self::MULTIPLIER,
-            'tags' => $score > 0 ? [Tags::XSS] : []
+            'tags' => $score > 0 ? [Tags::RCE] : []
         ]);
     }
 }
-
-
-
-
-

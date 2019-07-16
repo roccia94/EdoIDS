@@ -5,8 +5,8 @@
         <edoardo_ids>
             <general>
                 <enabled>0</enabled>
-                <min_score_log>20</min_score_log>
-                <min_score_stop>40</min_score_stop>
+                <min_score_log>10</min_score_log>
+                <min_score_stop>15</min_score_stop>
             </general>
         </edoardo_ids>
     </default>

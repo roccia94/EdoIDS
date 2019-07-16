@@ -57,6 +57,7 @@ class PhpCommands implements DetectorInterface
             '/passthru\\s*\\(/',
             '/popen\\s*\\(/',
             '/eval\\s*\\(/',
+            '/phpinfo\\s*\\(/',
             '/(preg|ereg|eregi)_(replace|match|split|filter)([\\w\\_]+)*\\s*\\(/',
         ];
     }

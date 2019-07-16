@@ -14,6 +14,8 @@ use Magento\Framework\Exception\LocalizedException;
 
 class Phpids implements DetectorInterface
 {
+    private const MULTIPLIER = 3;
+
     /**
      * @var Monitor
      */
@@ -70,7 +72,7 @@ class Phpids implements DetectorInterface
         $result = $this->idsMonitor->run($requestPayload);
 
         return $this->securityThreatFactory->create([
-            'impact' => (int) $result->getImpact(),
+            'impact' => (int) $result->getImpact() * self::MULTIPLIER,
             'tags' => $result->getTags()
         ]);
     }

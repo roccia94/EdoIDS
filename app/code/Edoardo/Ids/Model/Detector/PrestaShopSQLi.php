@@ -8,31 +8,31 @@ use Edoardo\Ids\Model\GetMatchesCount;
 use Edoardo\Ids\Model\SecurityThreat;
 use Edoardo\Ids\Model\SecurityThreatFactory;
 use Edoardo\Ids\Model\Tags;
+use Magento\Framework\App\RequestInterface;
 
-class HtmlComments implements DetectorInterface
+class PrestaShopSQLi implements DetectorInterface
 {
-    private const MULTIPLIER = 40;
-
-    /**
+   
+/**
      * @var SecurityThreatFactory
      */
     private $securityThreatFactory;
 
     /**
-     * @var GetMatchesCount
+     * @var RequestInterface
      */
-    private $getMatchesCount;
+    private $request;
 
     /**
-     * @param GetMatchesCount $getMatchesCount
+     * @param RequestInterface $request
      * @param SecurityThreatFactory $securityThreatFactory
      */
     public function __construct(
-        GetMatchesCount $getMatchesCount,
+        RequestInterface $request,
         SecurityThreatFactory $securityThreatFactory
     ) {
         $this->securityThreatFactory = $securityThreatFactory;
-        $this->getMatchesCount = $getMatchesCount;
+        $this->request = $request;
     }
 
     /**
@@ -42,15 +42,17 @@ class HtmlComments implements DetectorInterface
     {
         $score = 0;
 
-        foreach ($requestPayload as $type => $data) {
-            foreach ($data as $field => $value) {
-                $score += $this->getMatchesCount->execute($value, ['-->', '<!--']);
-            }
-        }
+        // https://www.cvedetails.com/cve/CVE-2018-8824/
+        //https://www.getastra.com/blog/prestashop-security/prestashop-hacked-these-vulnerabilities-can-be-the-reason/
+    
 
+         if (strpos($this->request->getPathInfo(), '/modules/bamegamenu/ajax_phpcode.php') !== false) {                                 
+            $score = 20;   // lo voglio solo loggare, non è una minaccia ma voglio capire cosa stanno facendo
+        } 
         return $this->securityThreatFactory->create([
-            'impact' => $score * self::MULTIPLIER,
-            'tags' => $score > 0 ? [Tags::XSS] : []
+            'impact' => $score,
+            'tags' => $score > 0 ? [Tags::SQLI, Tags::RCE] : []
         ]);
     }
 }
+

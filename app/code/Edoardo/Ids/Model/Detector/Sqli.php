@@ -44,7 +44,7 @@ class Sqli implements DetectorInterface
         return [
             'select', 'insert', 'update', 'drop', 'alter',
             'rename', 'replace', 'delete', 'desc', 'describe', 'shutdown', 'show', 'backup', 'restore',
-            'union', 'create', 'all', 'distinct',
+            'create', 'all', 'distinct',
             'delayed', 'ignore', 'into', 'from', 'set', 'quick', 'temporary', 'concurrent', 'local',
             'replace', 'partition', 'table'
         ];
@@ -58,7 +58,7 @@ class Sqli implements DetectorInterface
         return [
             'load data', 'distinctrow', 'low_priority', 'high_priority', 'straight_join',
             'sql_small_result', 'sql_big_result', 'sql_buffer_result', 'sql_cache', 'sql_no_cache',
-            'sql_calc_found_rows', 'infile'
+            'sql_calc_found_rows', 'infile', 'union select'
         ];
     }
 

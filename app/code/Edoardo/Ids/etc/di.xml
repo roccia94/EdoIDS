@@ -18,11 +18,19 @@
                 <item name="html-comments" xsi:type="object">Edoardo\Ids\Model\Detector\HtmlComments</item>
                 <item name="html-attributes" xsi:type="object">Edoardo\Ids\Model\Detector\HtmlAttributes</item>
                 <item name="javascript" xsi:type="object">Edoardo\Ids\Model\Detector\Javascript</item>
-                <item name="js-fuck" xsi:type="object">Edoardo\Ids\Model\Detector\JsFuck</item>
+                <item name="js-f" xsi:type="object">Edoardo\Ids\Model\Detector\JsF</item>
                 <item name="sqli" xsi:type="object">Edoardo\Ids\Model\Detector\Sqli</item>
                 <item name="php-commands" xsi:type="object">Edoardo\Ids\Model\Detector\PhpCommands</item>
-                <item name="filesystem" xsi:type="object">Edoardo\Ids\Model\Detector\PhpCommands</item>
+                <item name="filesystem" xsi:type="object">Edoardo\Ids\Model\Detector\Filesystem</item>
                 <item name="php-ids" xsi:type="object">Edoardo\Ids\Model\Detector\Phpids</item>
+                <item name="wp-csrf" xsi:type="object">Edoardo\Ids\Model\Detector\WPcsrf</item>
+                <item name="typo3php" xsi:type="object">Edoardo\Ids\Model\Detector\TYPO3phpcode</item>
+                <item name="typo3sqli" xsi:type="object">Edoardo\Ids\Model\Detector\TYPO3sqli</item>
+                <item name="drup-openredirect" xsi:type="object">Edoardo\Ids\Model\Detector\DRUPopred</item>
+                <item name="preshop-sqli" xsi:type="object">Edoardo\Ids\Model\Detector\PrestaShopSQLi</item>
+                <item name="jsphp-comments" xsi:type="object">Edoardo\Ids\Model\Detector\JavaPHPComments</item>
+                <item name="sql-comments" xsi:type="object">Edoardo\Ids\Model\Detector\SQLComments</item>
+                <item name="rfi-redirect" xsi:type="object">Edoardo\Ids\Model\Detector\RFIRedirect</item>
             </argument>
         </arguments>
     </type>

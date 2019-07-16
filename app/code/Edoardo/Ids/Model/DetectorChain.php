@@ -16,15 +16,23 @@ class DetectorChain implements DetectorInterface
     private $securityThreatFactory;
 
     /**
+     * @var FilterRequest
+     */
+    private $filterRequest;
+
+    /**
      * @param array $detectors
+     * @param FilterRequest $filterRequest
      * @param SecurityThreatFactory $securityThreatFactory
      */
     public function __construct(
         array $detectors,
+        FilterRequest $filterRequest,
         SecurityThreatFactory $securityThreatFactory
     ) {
         $this->detectors = $detectors;
         $this->securityThreatFactory = $securityThreatFactory;
+        $this->filterRequest = $filterRequest;
     }
 
     /**
@@ -35,6 +43,8 @@ class DetectorChain implements DetectorInterface
         $tags = [];
         $modules = [];
         $impact = 0;
+
+        $requestPayload = $this->filterRequest->execute($requestPayload);
 
         foreach ($this->detectors as $detectorCode => $detector) {
             /** @var DetectorInterface $detector */
